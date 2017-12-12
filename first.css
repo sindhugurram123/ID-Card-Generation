@@ -1,0 +1,117 @@
+body
+{
+    background-image:url(clg.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    overflow:hidden;
+}
+
+div.anurag{
+    font-style: normal;
+    position: relative;
+    top:10px;
+    color: black;
+    font-family: serif;
+    font-size: 70px;
+}
+
+div.cvsr{
+    position: relative;
+    font-style: normal;
+    font-family: serif;
+    font-size: 20px;
+    color: black;
+
+}
+.card {
+    background: #fff;
+    border-radius: 2px;
+    display: inline-block;
+    height: 400px;
+    top: 50px;
+    left: 30%;
+    margin: 1rem;
+    position: relative;
+    width: 500px;
+}
+.card-1 {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-1:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+
+div.sign
+{
+
+    width: 50%;
+    font-family: 'Roboto';
+    font-size: 32px;
+    margin-bottom: 23px;
+
+}
+
+
+
+
+label{
+    display: block;
+    position: relative;
+    top: -20px;
+    left: 0px;
+    color: #999;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 16px;
+    z-index: 1;
+    transition: all 0.3s ease-out;
+}
+
+input{
+    display: block;
+    position: relative;
+    height: 30px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    font-family: 'Helvetica', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    z-index: 2;
+    color: cornflowerblue;
+}
+
+
+input:focus, input:valid{
+    outline: none;
+    border-bottom: 1px solid #00aced;
+}
+
+
+input:focus + label, input:valid + label{
+    top: -40px;
+    font-size: 11px;
+    color: #00aced;
+}
+
+
+
+div.for
+{
+margin-top: 13px;
+    
+}
+
+
+
+div.box
+{
+padding-top: 80px;
+    padding-bottom: 80px;
+    
+    padding-left: 45px;
+padding-right: 45px;
+}
