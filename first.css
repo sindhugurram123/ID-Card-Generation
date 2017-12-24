@@ -4,6 +4,7 @@ body
     background-repeat: no-repeat;
     background-size:cover;
     overflow:hidden;
+    background-color: #8c8c8c; 
 }
 
 div.anurag{
@@ -115,3 +116,4 @@ padding-top: 80px;
     padding-left: 45px;
 padding-right: 45px;
 }
+
