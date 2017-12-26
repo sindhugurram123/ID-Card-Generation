@@ -139,7 +139,7 @@
             <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <a href="#"><a href="user.php">Home</a></a>
-                <a href="#"><a href="upload.php">Upload Info</a></a>
+                <a href="#"><a href="uploadv2.php">Upload Info</a></a>
                 <a href="#"><a href="update.php">Update Details</a></a>
                 <a href="#"><a href="generate.html">Generate Report</a></a>
             </div>

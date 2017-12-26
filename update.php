@@ -7,125 +7,98 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
-    <link rel="stylesheet" type="text/css" href="first.css">
-    <link rel="stylesheet" type="text/css" href="menu.css">
+
+  <link rel="stylesheet" type="text/css" href="first.css">
+  <link rel="stylesheet" type="text/css" href="menu.css">
+  <style type="text/css">
+
+  .tab
+  {
+    border-style:solid;
+    border-color:black;
+    color: black;
+    font-weight: italic;
+}
+
+</style>
 </head>
+
+<?php 
+
+$connet = @mysql_connect("localhost","root","sindhu");
+mysql_select_db("idcard");
+
+$result = mysql_query("select * from stud_master");
+
+?>
 <body>
  <center>
 
-                <div class="anurag">
-                    ANURAG GROUP OF INSTITUTIONS</div>
+    <div class="anurag">
+    ANURAG GROUP OF INSTITUTIONS</div>
 
-                <div class="cvsr">
-                    Formely known as "CVSR College Of Engineering" <br>Ghatkesar (M) Ranga Reddy (Dist.), Venkatapur, Telangana
-                </div>
-            </center> 
-    
-     <div id="mySidenav" class="sidenav">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="#"><a href="user.php">Home</a></a>
-                <a href="#"><a href="upload.php">Upload Info</a></a>
-                <a href="#"><a href="update.php">Update Details</a></a>
-                <a href="#"><a href="generate.html">Generate Card</a></a>
-            </div>
+    <div class="cvsr">
+        Formely known as "CVSR College Of Engineering" <br>Ghatkesar (M) Ranga Reddy (Dist.), Venkatapur, Telangana
+    </div>
+</center> 
 
-            <div class="menu">
-                <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
-            </div>
-    
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#"><a href="user.php">Home</a></a>
+    <a href="#"><a href="upload.php">Upload Info</a></a>
+    <a href="#"><a href="update.php">Update Details</a></a>
+    <a href="#"><a href="generate.html">Generate Card</a></a>
+</div>
+
+<div class="menu">
+    <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
+</div>
+
 <div class="container">
-  <h2>Update</h2>
-         
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Name</th>
-		<th>Class</th>
-        <th>Hall Ticket No.</th>
-        <th>Batch</th>
-		<th>Contact</th>
-		<th>Image</th>
-		<th>QR Code</th>
-		<th>Update</th>
-      </tr>
+
+    <div  class="tab">
+      <table class="table table-bordered ">
+        <thead>
+          <tr>
+            <th>Name</th>       
+            <th>Class</th>
+            <th>Hall Ticket No.</th>
+            <th>Batch</th>
+            <th>Contact</th>
+            <th>Image</th>
+            <th>QR Code</th>
+            <th>Update</th>
+        </tr>
     </thead>
+
     <tbody>
-      <tr>
-        <td>Athira</td>
-        <td>B.Tech INFO</td>
-        <td>14H61A1201</td>
-		<td>2014-18</td>
-        <td>9876543210</td>
-        <td><img src="cap.png" width="30" height="40"></td>
-		<td><img src="qr.png" width="30" height="40"></td>
-		<form action="edit.php">
-		 <td><button  class="btn btn-primary">Edit</button></td></form>
-      </tr>
-	  </tbody>
-  </table>
-  </div>
-  
-<form id="userForm" method="post" class="form-horizontal" style="display: none;">
-    
+        <?php while($row = mysql_fetch_array($result))
+        { ?>
+          <tr>
+            <td ><?php echo $row['name'] ?></td>
+            <td><?php echo $row['class'] ?></td>
+            <td><?php echo $row['hall_ticket'] ?></td>
+            <td contenteditable='true'><?php echo $row['batch'] ?></td>
+            <td><?php echo $row['Phone_No'] ?></td>
+            <td><img src="cap.png" width="30" height="40"></td>
+            <td><img src="qr.png" width="30" height="40"></td>
 
-    <div class="form-group">
-        <label class="col-xs-3 control-label">Name</label>
-        <div class="col-xs-5">
-            <input type="text" class="form-control" name="name" />
-        </div>
-    </div>
 
-    <div class="form-group">
-        <label class="col-xs-3 control-label">Class</label>
-        <div class="col-xs-5">
-            <input type="text" class="form-control" name="class" />
-        </div>
-    </div>
-	<div class="form-group">
-        <label class="col-xs-3 control-label">Hall Ticket No.</label>
-        <div class="col-xs-3">
-            <input type="text" class="form-control" name="hall ticket no."  disabled="disabled" />
-        </div>
-    </div>
+            <form action="edit.php">
+               <td><button  class="btn btn-primary">Edit</button></td></form>
+           </tr>
+           <?php }?>
+       </tbody>
+   </table>
+</div>
+</div>
 
-    <div class="form-group">
-        <label class="col-xs-3 control-label">Batch</label>
-        <div class="col-xs-5">
-            <input type="number" class="form-control" name="Batch" />
-        </div>
-    </div>
 
-	<div class="form-group">
-        <label class="col-xs-3 control-label">Contact</label>
-        <div class="col-xs-5">
-            <input type="number" class="form-control" name="contact" />
-        </div>
-    </div>
-	<div class="form-group">
-        <label class="col-xs-3 control-label">Image</label>
-        <div class="col-xs-5">
-            <input type="image" class="form-control" name="image" />
-        </div>
-    </div>
-	<div class="form-group">
-        <label class="col-xs-3 control-label">QR COde</label>
-        <div class="col-xs-5">
-            <input type="image" class="form-control" name="qr code" />
-        </div>
-    </div>
-	
-    <div class="form-group">
-        <div class="col-xs-5 col-xs-offset-3">
-            <button type="submit" class="btn btn-default">Save</button>
-        </div>
-    </div>
-</form>
-    
-    
+
+
 <script>
-$(document).ready(function() {
-    $('#userForm')
+    $(document).ready(function() {
+        $('#userForm')
         .formValidation({
             framework: 'bootstrap',
             icon: {
@@ -173,7 +146,7 @@ $(document).ready(function() {
             e.preventDefault();
 
             var $form = $(e.target),
-                id    = $form.find('[name="id"]').val();
+            id    = $form.find('[name="id"]').val();
 
             // The url and method might be different in your application
             $.ajax({
@@ -183,14 +156,14 @@ $(document).ready(function() {
             }).success(function(response) {
                 // Get the cells
                 var $button = $('button[data-id="' + response.id + '"]'),
-                    $tr     = $button.closest('tr'),
-                    $cells  = $tr.find('td');
+                $tr     = $button.closest('tr'),
+                $cells  = $tr.find('td');
 
                 // Update the cell data
                 $cells
-                    .eq(1).html(response.name).end()
-                    .eq(2).html(response.email).end()
-                    .eq(3).html(response.website).end();
+                .eq(1).html(response.name).end()
+                .eq(2).html(response.email).end()
+                .eq(3).html(response.website).end();
 
                 // Hide the dialog
                 $form.parents('.bootbox').modal('hide');
@@ -201,7 +174,7 @@ $(document).ready(function() {
             });
         });
 
-    $('.editButton').on('click', function() {
+        $('.editButton').on('click', function() {
         // Get the record's ID via attribute
         var id = $(this).attr('data-id');
 
@@ -211,42 +184,42 @@ $(document).ready(function() {
         }).success(function(response) {
             // Populate the form fields with the data returned from server
             $('#userForm')
-                .find('[name="id"]').val(response.id).end()
-                .find('[name="name"]').val(response.name).end()
-                .find('[name="email"]').val(response.email).end()
-                .find('[name="website"]').val(response.website).end();
+            .find('[name="id"]').val(response.id).end()
+            .find('[name="name"]').val(response.name).end()
+            .find('[name="email"]').val(response.email).end()
+            .find('[name="website"]').val(response.website).end();
 
             // Show the dialog
             bootbox
-                .dialog({
-                    title: 'Edit the user profile',
-                    message: $('#userForm'),
+            .dialog({
+                title: 'Edit the user profile',
+                message: $('#userForm'),
                     show: false // We will show it manually later
                 })
-                .on('shown.bs.modal', function() {
-                    $('#userForm')
+            .on('shown.bs.modal', function() {
+                $('#userForm')
                         .show()                             // Show the login form
                         .formValidation('resetForm'); // Reset form
-                })
-                .on('hide.bs.modal', function(e) {
+                    })
+            .on('hide.bs.modal', function(e) {
                     // Bootbox will remove the modal (including the body which contains the login form)
                     // after hiding the modal
                     // Therefor, we need to backup the form
                     $('#userForm').hide().appendTo('body');
                 })
-                .modal('show');
+            .modal('show');
         });
     });
-});
-    
-       function openNav() {
-                    document.getElementById("mySidenav").style.width = "250px";
-                }
+    });
 
-                function closeNav() {
-                    document.getElementById("mySidenav").style.width = "0";
-                }
-    
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+
 </script>
 
 </body>

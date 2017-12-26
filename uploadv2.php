@@ -1,14 +1,15 @@
 <html>
     <head>
         <title>Upload Page</title>
-
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="menu.css">
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+    </head>
+    <body>
+
         <style>
             body
             {
@@ -43,21 +44,39 @@
                 color: black;
             }
 
-             body {
+
+            body {
                 font-family: "Lato", sans-serif;
             }
-
+            div.upload{
+                position: relative;
+                font-style: normal;
+                font-family: serif;
+                font-size: 15px;
+                color: black;
+            }
+            #logout{
+                position:fixed;
+                left:90%;
+                top:20%;
+            }
+            .bus{
+                font-size:50px;
+                font-family:Georgia Header;
+                font-weight:bold;
+            }
             .sidenav {
 
-                width:0 ;
+                width: 0;
                 position: fixed;
                 z-index: 1;
-                top: 0;
+                top: 190px;
                 left: 0;
-                background-color: #111;
                 overflow-x: hidden;
+                background:black;
                 transition: 0.5s;
                 padding-top: 10px;
+
             }
 
             .sidenav a {
@@ -80,64 +99,89 @@
                 font-size: 36px;
                 margin-left: 50px;
             }
-             .menu{
-                position: relative;
-                top:5%;
-            }
 
             @media screen and (max-height: 450px) {
                 .sidenav {padding-top: 15px;}
                 .sidenav a {font-size: 18px;}
             }
-
-
+            .menu{
+                position: relative;
+                top:5%;
             }
 
+
+
+            .dropbtn {
+                background-color: #021638;
+                color: white;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .dropdown {
+                position: fixed;
+                display: inline-block;
+                top :200px;
+                left:0px;;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #cedbe5;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown-content a:hover {background-color: #bc9249}
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #a5551f;
+            }
         </style>
+        <center>
 
-        <script>
-            function openNav() {
-                document.getElementById("mySidenav").style.width = "250px";
-            }
+            <div class="anurag">
+                ANURAG GROUP OF INSTITUTIONS</div>
 
-            function closeNav() {
-                document.getElementById("mySidenav").style.width = "0";
-            }
-
-        </script>
-    </head>
-
-
-    <body>
-
-        <div class="anurag">
-            <center>
-                ANURAG GROUP OF INSTITUTIONS
-            </center>
-        </div>
-
-
-
-        <div class="cvsr">
-            <center>
-                Formerly known as CVSR College of Engineering <br>Ghatkesar (M) Ranga Reddy (Dist.), Venkatapur, Telangana
-            </center>
-        </div>
+            <div class="cvsr">
+                Formely known as "CVSR College Of Engineering" <br>Ghatkesar (M) Ranga Reddy (Dist.), Venkatapur, Telangana
+            </div>
+        </center>       
         <br>
         <br>
 
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="#"><a href="user.php">Home</a></a>
-            <a href="#"><a href="upload.php">Upload Info</a></a>
+            <a href="#"><a href="uploadv2.php">Upload Info</a></a>
             <a href="#"><a href="update.php">Update Details</a></a>
-            <a href="#"><a href="generate.html">Generate Card</a></a>
+            <a href="#"><a href="generate.html">Generate Report</a></a>
         </div>
 
         <div class="menu">
             <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
         </div>
+
+
+
+
         <center>
+
             <div class="upload">
                 <form method="post" enctype="multipart/form-data">
                     <div>
@@ -152,18 +196,23 @@
                 </form>
             </div>
         </center>
+        <div class="container" id="logout">
+            <a href="logout.php" class="btn btn-info btn-lg">
+                <span class="glyphicon glyphicon-log-out"></span> Log out
+            </a>
+        </div>
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+            }
+        </script>
 
 
-        <body>      
-<script>
-                function openNav() {
-                    document.getElementById("mySidenav").style.width = "250px";
-                }
 
-                function closeNav() {
-                    document.getElementById("mySidenav").style.width = "0";
-                }
-            </script>
+    </body>
 
-
-            </html>
+</html>
