@@ -1,0 +1,10 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+            xmlns:x="urn:schemas-microsoft-com:office:word"
+            xmlns="http://www.w3.org/TR/REC-html40">
+
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            <html>
+            <head>
+                <meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+            </head>
+            <body><h1>Database buspass</h1><h2>Table structure for table webcam</h2><table class="width100" cellspacing="1"><tr class="print-category"><th class="print">Column</th><td class="print"><strong>Type</strong></td><td class="print"><strong>Null</strong></td><td class="print"><strong>Default</strong></td></tr><tr class="print-category"><td class="print"><em><strong>Id</strong></em></td><td class="print">int(5)</td><td class="print">No</td><td class="print"></td></tr><tr class="print-category"><td class="print">Image</td><td class="print">varchar(150)</td><td class="print">No</td><td class="print"></td></tr></table><h2>Dumping data for table webcam</h2><table class="width100" cellspacing="1"></table></body></html>

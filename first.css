@@ -1,36 +1,28 @@
 body
 {
-    background-image:url(clg.jpg);
-    background-repeat: no-repeat;
-    background-size:cover;
-    overflow:hidden;
-    background-color: #8c8c8c; 
+    
+    background-color: white; 
+}
+   #logout{
+                position:fixed;
+                left:90%;
+                top:20%;
+            }
+
+
+
+  .logo{
+padding: 30px;
 }
 
-div.anurag{
-    font-style: normal;
-    position: relative;
-    top:10px;
-    color: black;
-    font-family: serif;
-    font-size: 70px;
-}
-
-div.cvsr{
-    position: relative;
-    font-style: normal;
-    font-family: serif;
-    font-size: 20px;
-    color: black;
-
-}
 .card {
     background: #fff;
     border-radius: 2px;
     display: inline-block;
     height: 400px;
     top: 50px;
-    left: 30%;
+
+left: 30%;
     margin: 1rem;
     position: relative;
     width: 500px;

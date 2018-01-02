@@ -12,8 +12,18 @@
   <link rel="stylesheet" type="text/css" href="menu.css">
   <style type="text/css">
 
-  .tab
+  body
   {
+    
+    background-color: white; 
+}
+   #logout{
+                position:fixed;
+                left:90%;
+                top:20%;
+            }
+.tab
+{
     border-style:solid;
     border-color:black;
     color: black;
@@ -32,27 +42,33 @@ $result = mysql_query("select * from stud_master");
 
 ?>
 <body>
- <center>
+   <center>
+    <div class="logo">
+        <img src="logo.png" height="150px" width="450px">
+</div>
 
-    <div class="anurag">
-    ANURAG GROUP OF INSTITUTIONS</div>
 
-    <div class="cvsr">
-        Formely known as "CVSR College Of Engineering" <br>Ghatkesar (M) Ranga Reddy (Dist.), Venkatapur, Telangana
-    </div>
 </center> 
 
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#"><a href="user.php">Home</a></a>
-    <a href="#"><a href="upload.php">Upload Info</a></a>
+    <a href="#"><a href="uploadv4.php">Upload Info</a></a>
     <a href="#"><a href="update.php">Update Details</a></a>
-    <a href="#"><a href="generate.html">Generate Card</a></a>
+    <a href="#"><a href="generate.html">Generate Report</a></a>
+    <a href="#"><a href="card.php">Generate Card</a></a>
+    <a href="#"><a href="logout">Change Password</a></a>
 </div>
 
 <div class="menu">
     <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
 </div>
+
+<div class="container" id="logout">
+                <a href="logout.php" class="btn btn-info btn-lg">
+                    <span class="glyphicon glyphicon-log-out"></span> Log out
+                </a>
+            </div>
 
 <div class="container">
 
@@ -85,16 +101,17 @@ $result = mysql_query("select * from stud_master");
 
 
             <form action="edit.php">
-               <td><button  class="btn btn-primary">Edit</button></td></form>
-           </tr>
-           <?php }?>
-       </tbody>
-   </table>
+             <td><button  class="btn btn-primary">Upload</button></td></form>
+         </tr>
+         <?php }?>
+     </tbody>
+ </table>
 </div>
 </div>
 
 
 
+            
 
 <script>
     $(document).ready(function() {

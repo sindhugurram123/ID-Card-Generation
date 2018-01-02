@@ -26,39 +26,31 @@
         background-color: #8c8c8c; 
     }
 
-    div.anurag{
-        font-style: normal;
-        position: relative;
-        top:10px;
-        color: black;
-        font-family: serif;
-        font-size: 70px;
-    }
-
-    div.cvsr{
-        position: relative;
-        font-style: normal;
-        font-family: serif;
-        font-size: 20px;
-        color: black;
-
-    }
+    
+ #logout{
+                position:fixed;
+                left:90%;
+                top:20%;
+            }
+    
     table ,tr ,td{
         border-collapse: collapse;
 
         padding:9px;
     }
+.logo{
+padding: 30px;
+}
 
 </style>
 </head>
 <body>
     <center>
-        <div class="anurag">
-        ANURAG GROUP OF INSTITUTIONS</div>
-        <div class="cvsr">
-            Formely known as "CVSR College Of Engineering" <br>Ghatkesar (M) Ranga Reddy (Dist.), Venkatapur, Telangana
-        </div>
-    </center> 
+         <div class="logo">
+        <img src="logo.png" height="150px" width="450px">
+    </div>
+</center>
+</div>
     <br>
     <br>
 
@@ -68,6 +60,8 @@
         <a href="#"><a href="uploadv2.php">Upload Info</a></a>
         <a href="#"><a href="update.php">Update Details</a></a>
         <a href="#"><a href="generate.html">Generate Report</a></a>
+        <a href="#"><a href="card.php">Generate Card</a></a>
+        <a href="#"><a href="logout">Change Password</a></a>
     </div>
 
     <div class="menu">
@@ -85,14 +79,27 @@
                             </select>
                         </td>
                         <td> Class : <select name="cls">
-                            <option>Btech</option>
-                            <option>Mtech</option>
-                            <option>BPharmcy</option>
-                            <option>MBA</option>
+                            <option value="Btech">Btech</option>
+                            <option value="Mtech">Mtech</option>
+                            <option value="BPharmcy">BPharmcy</option>
+                            <option value="MBA">MBA</option>
                         </select></td></tr>
                         <tr> <td> Name: </td> <td> <input type="text" class="form-control" name="name"></td>
 
-                            <td> Branch: </td> <td> <input type="text" class="form-control" name="bach"></td></tr>
+                            <td> Branch: </td> <td> 
+                                <section>
+                                    <option> CSE</option>
+                                    <option>IT</option>
+                                    <option>ECE</option>
+                                    <option>EEE</option>
+                                    <option>CIVIL</option>
+                                    <option>CHEM</option>
+                                    <option>MECH</option>
+                                    
+                                </section>
+
+
+                            </td></tr>
                             <tr> <td> Roll No.: </td> <td> <input type="text" class="form-control" name="roll"></td>
                                 <td> Section: </td> <td> <input type="text" class="form-control" name="sec"></td></tr>
                                 <tr> <td> Year: </td> <td> <input type="number" class="form-control" name="year"></td>
@@ -111,11 +118,19 @@
                                     </form>
                                 </center>
                             </div>
+
+                             <div class="container" id="logout">
+                <a href="logout.php" class="btn btn-info btn-lg">
+                    <span class="glyphicon glyphicon-log-out"></span> Log out
+                </a>
+            </div>
+
                         </body>
 
                         <?php 
 
-                        $name =$_POST['name'];
+
+                    /*    $name =$_POST['name'];
                         $brach=$_POST['bach'];
                         $roll=$_POST['roll'];
                         $sec=$_POST['sec'];
@@ -126,28 +141,49 @@
                         $mobile=$_POST['mobile'];
                         $board=$_POST['board'];
                         $opt=$_POST['cars'];
+                        $class =$_POST['cls'];
+                        $batch=$_POST['batch'];
+                        $cat=$_POST['cars'];  */
+                        
+             
+                        $name =isset($_POST['name']);
+                        $brach=isset($_POST['bach']);
+                        $roll=isset($_POST['roll']);
+                        $sec=isset($_POST['sec']);
+                        $year=isset($_POST['year']);
+                        $tot=isset($_POST['tot']);
+                        $paid=isset($_POST['paid']);
+                        $due=isset($_POST['due']);
+                        $mobile=isset($_POST['mobile']);
+                        $board=isset($_POST['board']);
+                        $opt=isset($_POST['cars']);
                         $class =isset($_POST['cls']);
                         $batch=isset($_POST['batch']);
+                        $cat=isset($_POST['cars']);
                         
-                        $connet = @mysql_connect("localhost","root","sindhu") ;
+
+$connet = @mysql_connect("localhost","root","sindhu") ;
                         mysql_select_db("idcard");
 
                         if($connet=== false){
-                            die("ERROR: Could not connect. " . mysql_connect_error());
+                            die("ERROR: Could not ggg connect. " . mysql_connect_error());
                         }
-
-
+                        
                         $sql = "INSERT INTO stud_master (hall_ticket,route_no,class,name,branch,batch,yeart,Phone_No,section) VALUES ('$roll',$board,$class,'$name','$brach','$batch',$year,$mobile,'$sec')";
 
                         $result = mysql_query($sql);
 
-                        if(mysql_query( $connet,$result)){
-                            echo "Records added successfully.";
+                       /*if(mysql_query( $connet,$result)){
+                    echo "Records added successfully.";
                         } else{
                             echo "ERROR: Could not able to execute $sql. " . mysql_error($connet);
                         }
+                        */
 
-
+                        if( $result ) 
+                            echo "<script type='text/javascript'>alert('Submitted Successfully!')</script>";
+                        else
+                            echo "<script type='text/javascript'>alert('Failed! Try Again !')</script>";
                         ?>
-
+                        
                         </html>

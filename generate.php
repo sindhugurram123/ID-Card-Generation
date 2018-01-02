@@ -3,6 +3,7 @@
 
         <title> Generate ID Card</title>
         <link rel="stylesheet" type="text/css" href="first.css">
+        <link rel="stylesheet" type="text/css" href="menu.css">
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -22,12 +23,9 @@
     <body>
         <center>
 
-            <div class="anurag">
-                ANURAG GROUP OF INSTITUTIONS</div>
-
-            <div class="cvsr">
-                Formely known as "CVSR College Of Engineering" <br>Ghatkesar (M) Ranga Reddy (Dist.), Venkatapur, Telangana
-            </div>
+               <div class="logo">
+        <img src="logo.png" height="150px" width="450px">
+</div>
             <div class="form-group">
                 <select class="form-control" id="sel"><option>Student</option><option>Faculty</option></select>
             </div>  

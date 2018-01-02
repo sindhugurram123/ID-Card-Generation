@@ -1,0 +1,47 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Dec 29, 2017 at 02:40 PM
+-- Server version: 5.7.19
+-- PHP Version: 5.6.31
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `studentdb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subject`
+--
+
+DROP TABLE IF EXISTS `subject`;
+CREATE TABLE IF NOT EXISTS `subject` (
+  `SUBJ_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `SUBJ_CODE` varchar(30) NOT NULL,
+  `SUBJ_DESCRIPTION` varchar(255) NOT NULL,
+  `UNIT` int(2) NOT NULL,
+  `PRE_REQUISITE` varchar(30) NOT NULL DEFAULT 'None',
+  `COURSE_ID` int(11) NOT NULL,
+  `AY` varchar(30) NOT NULL,
+  `SEMESTER` varchar(20) NOT NULL,
+  PRIMARY KEY (`SUBJ_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

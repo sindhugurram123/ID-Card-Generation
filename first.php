@@ -8,20 +8,29 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
         <meta charset="utf-8">
+    
+<style type="text/css">
+      .logo{
+padding: 30px;
+}
+
+body
+{
+    background-image:url(clg.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    overflow:hidden;
+}
+</style>
+
     </head>
     <body>
+<center>
+           <div class="logo">
+        <img src="logo.png" height="150px" width="450px">
+</div>     
 
-        <center>
-
-            <div class="anurag">
-                ANURAG GROUP OF INSTITUTIONS</div>
-
-            <div class="cvsr">
-                Formely known as "CVSR College Of Engineering" <br>Ghatkesar (M) Ranga Reddy (Dist.), Venkatapur, Telangana
-            </div>
-        </center>        
-
-
+</center>
 
         <div class="card card-1">
             <div class="box">

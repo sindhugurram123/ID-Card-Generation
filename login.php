@@ -53,19 +53,9 @@
 
         <body>
             
-            <div class="anurag">
-                <center>
-            ANURAG GROUP OF INSTITUTIONS
-            </center>
-            </div>
-        
-            
-            
-            <div class="cvsr">
-            <center>
-                Formely known as "CVSR College Of Engineering" <br>Ghatkesar (M) Ranga Reddy (Dist.), Venkatapur, Telangana
-                </center>
-            </div>
+            <div class="logo">
+        <img src="logo.png" height="150px" width="450px">
+</div>
             
             <div class="login">
 <form action="valid.php" target="_top" method="post">
