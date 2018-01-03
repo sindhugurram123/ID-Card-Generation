@@ -138,6 +138,8 @@ echo "false";}
     <div class="menu">
         <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
     </div>
+   
+    
     <div>
 
         <center>
@@ -209,7 +211,7 @@ echo "false";}
                         </tr>  <tr>
                         <td><input class="btn btn-primary" type="submit" name="Submit" value="Submit"></td><br><br>
                         <td><input class="btn btn-primary" type="reset" value="Reset"></td>  
-                        <td><a href="excel/excel-upload/"><input class="btn btn-primary" type="button" value="Upload"> </a></td>
+                        <td><a href="index1.php"><input class="btn btn-primary" type="button" value="Upload"> </a></td>
                         </div>
                     </table>
             </form>
