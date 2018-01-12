@@ -1,218 +1,164 @@
+<?
+php ini_set( "display_errors", 0); ?>
+<?php 
+if(isset($_POST['Submit']))
+{
+$db = new mysqli("localhost","root","sindhu","idcard") ;           
+$roll=mysqli_real_escape_string($db,trim($_POST['roll']));
+$sql="select  hall_ticket,name,branch,section,yeart,Phone_No from stud_master where hall_ticket=$roll;";
+$result=mysqli_query($db,$sql);
+/*
+while ($row=mysqli_fetch_assoc($result)) {
+echo $row["hall_ticket"];
+echo $row["name"];
+echo $row["branch"];
+}
+*/
+}
+?>
 <html>
-    <head>
-        <title>Upload Page</title>
-        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="utf-8">
-    </head>
-    <body>
+<head><title>Upload Page</title>
 
-        <style>
-            body
-            {
-                background-image:url(clg.jpg);
-                background-repeat: no-repeat;
-                background-size:cover;
-                overflow:hidden;
-            }
+<link rel="stylesheet" type="text/css" href="menu.css">
+<link rel="stylesheet" type="text/css" href="first.css">
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta charset="utf-8">
+<script>
+function openNav() {
+document.getElementById("mySidenav").style.width = "250px";
+}
+function closeNav() {
+document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+<style>
 
-            div.anurag{
-                font-style: normal;
-                position: relative;
-                top:10px;
-                color: black;
-                font-family: serif;
-                font-size: 70px;
-            }
+body{
+overflow: scroll;
+}
+table ,tr ,td{
 
-            div.cvsr{
-                position: relative;
-                font-style: normal;
-                font-family: serif;
-                font-size: 20px;
-                color: black;
+padding:7px;
+height: 30px;
+margin: -40px;
+}
+.upload{
 
-            }
-            div.upload{
-                position: relative;
-                font-style: normal;
-                font-family: serif;
-                font-size: 15px;
-                color: black;
-            }
+position: relative;
+top: -90px;
 
+}
+hr{
+margin-top: 20px;
+margin-bottom: 20px;
+border: 0;
+border-top: 1px solid #1768b2;
+}
+}
+</style>
+</head>
+<body>
+<center>
+<div class="logo">
+<img src="logo.png" height="150px" width="450px">
+</div>
+</center>
+</div>
+<br>
+<br>
+<div id="mySidenav" class="sidenav">
+<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+<a href="#"><a href="user.php">Home</a></a>
+<a href="#"><a href="uploadv4.php">Upload Info</a></a>
+<a href="#"><a href="update.php">Update Details</a></a>
+<a href="#"><a href="generate.html">Generate Report</a></a>
+<a href="#"><a href="card.php">Generate Card</a></a>
+<a href="#"><a href="logout">Change Password</a></a>
+</div>
+<div class="menu">
+<span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
+</div>
+<div>
+<center>
+<form class="form-inline" action="" method="post">
+<div class="form-group">
+<table style="color: black; font-weight:bold;" id="table" cellspacing="50" align="center">
+<tr><td class="Upload"><a href="index1.php"><input class="btn btn-primary" type="button" value="Upload"> </a></td></tr>
+<hr  size="190px">
+<tr> <td>
+<select name="cars" >
+<option value="Student">Student</option><option value="Faculty">Faculty</option>
+</select>
+</td>
+<td> Class : <select name="cls">
+<option value="Btech">Btech</option>
+<option value="Mtech">Mtech</option>
+<option value="BPharmcy">BPharmcy</option>
+<option value="MBA">MBA</option>
+</select></td></tr>
+<tr> <td> Roll No.: </td> <td> <input type="text" class="form-control" name="roll" ></td>
+<td><input class="btn btn-primary" type="submit" name="Submit" value="Submit">
+<td><input class="btn btn-primary" type="reset" value="Reset"></td>
+</td>
+</tr>
+<tr>
+<?php 
+if(isset($_POST['Submit']))
+{
+while ($row=mysqli_fetch_assoc($result)) {
+?>
+<td> Name: </td> <td> <input type="text" readonly="readonly class="form-control" name="name" value="<?php echo $row["name"];  ?>" ></td>
+<td> Branch: </td>  <td> <input type="text" readonly="readonly class="form-control" name="branch" value="<?php echo $row["branch"];  ?>" ></td> </tr>
+<tr> 
+<td> Section: </td> <td> <input type="text" readonly="readonly class="form-control"  name="sec" value="<?php echo $row["section"]; ?>"></td>
+<td> Mobile NO.: </td> <td> <input type="number"  readonly="readonly class="form-control" name="mobile"  value="<?php echo $row["Phone_No"]; ?>"></td>
+</tr>
+<tr> <td> Year: </td> <td><input type="number"  readonly="readonly class="form-control" name="mobile"  value="<?php echo $row["yeart"]; ?>"></td>
+<td> Boading Point : </td> <td>
+<select  name="board" onchange="myfunction()"> 
+<option>Miyapur</option>
+<option>Dilsuknagar</option>
+<option>ECIL</option>
+<option>Miyapur</option>
+<option>Ramanthapur</option>
+<option>Tarnaka</option>
+<option>kukatpally</option>
+</select>
+</td></tr>
+<?php
+function myfunction()
+    {
+        $query = "select bus_no from bus_master where Board_pts='$board';";
+        $ans=mysqli_query($db,$sql);
+        while ($row1=mysqli_fetch_assoc($ans))
+        {echo $row1["bus_no"];} 
+    }  
+?>
 
-            body {
-                font-family: "Lato", sans-serif;
-            }
-            div.upload{
-                position: relative;
-                font-style: normal;
-                font-family: serif;
-                font-size: 15px;
-                color: black;
-            }
-            #logout{
-                position:fixed;
-                left:90%;
-                top:20%;
-            }
-            .bus{
-                font-size:50px;
-                font-family:Georgia Header;
-                font-weight:bold;
-            }
-            .sidenav {
-
-                width: 0;
-                position: fixed;
-                z-index: 1;
-                top: 190px;
-                left: 0;
-                overflow-x: hidden;
-                background:black;
-                transition: 0.5s;
-                padding-top: 10px;
-
-            }
-
-            .sidenav a {
-                padding: 8px 8px 8px 32px;
-                text-decoration: none;
-                font-size: 25px;
-                color: #818181;
-                display: block;
-                transition: 0.3s;
-            }
-
-            .sidenav a:hover {
-                color: #f1f1f1;
-            }
-
-            .sidenav .closebtn {
-                position: absolute;
-                top: 0;
-                right: 25px;
-                font-size: 36px;
-                margin-left: 50px;
-            }
-
-            @media screen and (max-height: 450px) {
-                .sidenav {padding-top: 15px;}
-                .sidenav a {font-size: 18px;}
-            }
-            .menu{
-                position: relative;
-                top:5%;
-            }
-
-
-
-            .dropbtn {
-                background-color: #021638;
-                color: white;
-                padding: 16px;
-                font-size: 16px;
-                border: none;
-                cursor: pointer;
-            }
-
-            .dropdown {
-                position: fixed;
-                display: inline-block;
-                top :200px;
-                left:0px;;
-            }
-
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #cedbe5;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-            }
-
-            .dropdown-content a {
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-            }
-
-            .dropdown-content a:hover {background-color: #bc9249}
-
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
-
-            .dropdown:hover .dropbtn {
-                background-color: #a5551f;
-            }
-        </style>
-        <center>
-
-            <div class="anurag">
-                ANURAG GROUP OF INSTITUTIONS</div>
-
-            <div class="cvsr">
-                Formely known as "CVSR College Of Engineering" <br>Ghatkesar (M) Ranga Reddy (Dist.), Venkatapur, Telangana
-            </div>
-        </center>       
-        <br>
-        <br>
-
-        <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#"><a href="user.php">Home</a></a>
-            <a href="#"><a href="uploadv2.php">Upload Info</a></a>
-            <a href="#"><a href="update.php">Update Details</a></a>
-            <a href="#"><a href="generate.html">Generate Report</a></a>
-        </div>
-
-        <div class="menu">
-            <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
-        </div>
-
-
-
-
-        <center>
-
-            <div class="upload">
-                <form method="post" enctype="multipart/form-data">
-                    <div>
-                        <label for="file"><h3>Choose file to upload</h3></label>
-                        <center><input type="file" id="file" name="file" multiple></center>
-                    </div>
-                    <br>
-                    <br>
-                    <div>
-                        <button>Submit</button>
-                    </div>
-                </form>
-            </div>
-        </center>
-        <div class="container" id="logout">
-            <a href="logout.php" class="btn btn-info btn-lg">
-                <span class="glyphicon glyphicon-log-out"></span> Log out
-            </a>
-        </div>
-        <script>
-            function openNav() {
-                document.getElementById("mySidenav").style.width = "250px";
-            }
-
-            function closeNav() {
-                document.getElementById("mySidenav").style.width = "0";
-            }
-        </script>
-
-
-
-    </body>
-
+<tr> <td> Bus No: </td> <td> 
+<input type="number" value="" name="">
+</td>
+<td> Total Amt: </td> <td> <input type="number" class="form-control" name="tot"></td></tr>
+<tr> <td> Amt Paid: </td> <td> <input type="number" class="form-control" name="paid"></td>
+<td> Amt Due: </td> <td> <input type="number" class="form-control" name="due"></td></tr>
+<tr> 
+<td>Batch:</td><td><input type="text" name="batch" class="form-control"></td>
+</tr>  <tr>
+<br><br>
+<td></td>  
+<?php } } ?>
+</div>
+</table>
+</form>
+</center>
+</div>
+<div class="container" id="logout">
+<a href="logout.php" class="btn btn-info btn-lg">
+<span class="glyphicon glyphicon-log-out"></span> Log out
+</a>
+</div>
+</body>
 </html>
