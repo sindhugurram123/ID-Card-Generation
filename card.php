@@ -1,3 +1,25 @@
+<?
+php ini_set( "display_errors", 0); ?>
+
+
+<?php 
+if(isset($_POST['print']))
+{
+	$db = new mysqli("localhost","root","sindhu","idcard") ;   
+
+	$name =mysqli_real_escape_string($db,$_POST['name']);
+	$roll=mysqli_real_escape_string($db,trim($_POST['roll']));
+	$class =mysqli_real_escape_string($db,$_POST['cls']);
+	$brach=mysqli_real_escape_string($db,$_POST['batch']);
+	$board=mysqli_real_escape_string($db,$_POST['board']);
+	$bus = mysqli_real_escape_string($db,$_POST['bus']);
+	$paid=mysqli_real_escape_string($db,$_POST['paid']);
+	$due=mysqli_real_escape_string($db,$_POST['due']);
+
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +32,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="menu.css">
+	
+
 	<style>
 
-
+	body
+	{
+		overflow: hidden;									
+	}
 	.id-card-holder {
 		width: 325px;
 		padding: 4px;
@@ -25,10 +52,10 @@
 	.name{
 		font-size:15px;
 		color:#1c6593;
-		
+
 		border:1.5px solid #1c6593;
 		float:top;
-		
+
 	}
 	.student{
 		color:red; 
@@ -84,9 +111,22 @@
 	}
 	.click{
 		position: relative;
-		bottom:  70px;
+		bottom:  -150px;
 		left: 1000px;
+	}
+	.print{
+		position: relative;
+		bottom: -180px;
+		left: 1000px;
+	}
 
+	.ok{
+		position: relative;
+		bottom: -200px;
+		left: 1000px;
+	}
+
+	
 </style>
 
 <script>
@@ -96,6 +136,10 @@
 
 	function closeNav() {
 		document.getElementById("mySidenav").style.width = "0";
+	}
+
+	function myFunction() {
+		window.print();
 	}
 </script>
 </head>
@@ -119,6 +163,7 @@
 	<div class="menu">
 		<span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
 	</div>
+
 	<div class="id-card-holder">
 		<div class="id-card">
 			<div class="header">
@@ -135,15 +180,15 @@
 
 				<tr>
 
-					<td>Name:</td><td>Sadhana</td></tr>
-					<tr><td>H.No.:</td><td>14h61a1236</td></tr>
-					<tr><td>Course:</td><td>Btech</td></tr>
-					<tr><td>Branch:</td><td>IT</td></tr>
-					<tr><td>Boarding Pt.</td><td>Uppal</td></tr>
-					<tr><td>Bus No.:</td><td>2</td>
+					<td>Name:</td><td><?php echo $name ?></td></tr>
+					<tr><td>H.No.:</td><td><?php echo $roll ?></td></tr>
+					<tr><td>Course:</td><td><?php echo $class ?></td></tr>
+					<tr><td>Branch:</td><td> <?php echo $brach ?> </td></tr>
+					<tr><td>Boading Pt.</td><td><?php echo $board ?> </td></tr>
+					<tr><td>Bus No.:</td><td> <?php echo $bus ?>  </td>
 
 
-						<tr><td>Paid Amt:</td><td>12000</td><td>Due:</td><td>0</td></tr>
+						<tr><td>Paid Amt:</td><td><?php echo $paid ?> </td><td>Due:</td><td><?php echo $due ?> </td></tr>
 
 
 					</table>
@@ -171,6 +216,15 @@
 					<a href="geeetha/Buspass/index.php" class="btn btn-primary btn-lg">
 						<span class="glyphicon glyphicon-log-out"></span> Image Capture
 					</a>
+				</div>
+
+
+				<div class="print">
+					<button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+				</div>
+
+				<div class="ok">
+					
 				</div>
 
 				<div class="container" id="logout">

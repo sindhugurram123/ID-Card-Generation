@@ -2,20 +2,22 @@
 <?
 php ini_set( "display_errors", 0); ?>
 <?php 
-if(isset($_POST['Submit']))
+if(isset($_POST['print']))
 {
 	$db = new mysqli("localhost","root","sindhu","idcard") ;   
 
 	$name =mysqli_real_escape_string($db,$_POST['name']);
 	$roll=mysqli_real_escape_string($db,trim($_POST['roll']));
 	$class =mysqli_real_escape_string($db,$_POST['cls']);
-	$brach=mysqli_real_escape_string($db,$_POST['bach']);
+	$brach=mysqli_real_escape_string($db,$_POST['batch']);
 	$board=mysqli_real_escape_string($db,$_POST['board']);
 	$bus = mysqli_real_escape_string($db,$_POST['bus']);
 	$paid=mysqli_real_escape_string($db,$_POST['paid']);
 	$due=mysqli_real_escape_string($db,$_POST['due']);
 
 	echo $name;
+	echo  $class ;
+	echo $roll;
 
 }
 ?>
