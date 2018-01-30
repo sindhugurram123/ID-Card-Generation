@@ -11,28 +11,51 @@
 
 .dropdown-submenu {
     position: relative;
+	
 }
 
 .dropdown-submenu .dropdown-menu {
     top: 0;
     left: 100%;
     margin-top: -1px;
+	
 }
 </style>
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>
 </head>
 <body>
-   <center>
+ <center>
+   <div class="logo">
+    <img src="logo.png" height="150px" width="450px">
+  </div></center>
+  <p align="left">
+<button onclick="goBack()">Go Back</button></p>
+  <div class="menu">
+    <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
+  </div>   
 
-            <div class="anurag">
-                ANURAG GROUP OF INSTITUTIONS</div>
 
-            <div class="cvsr">
-                Formely known as "CVSR College Of Engineering" <br>Ghatkesar (M) Ranga Reddy (Dist.), Venkatapur, Telangana
-            </div>
-        </center> 
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#"><a href="user.php">Home</a></a>
+    <a href="#"><a href="academic.php">Academic year</a></a>
+    <a href="#"><a href="buswise.php">Bus Wise</a></a>
+    <a href="#"><a href="classwise.php">Class and Branch</a></a>
+    <a href="#">Pending</a>
+    <a href="#"><a href="logout">Change Password</a></a>
+  </div>
+    
 <div class="container" align="center-right">
-                                  
-  <div class="dropdown">
+                                
+  <div class="dropdown" >
     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Class
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
@@ -55,10 +78,7 @@
 	   <ul class="dropdown-menu">
           <li><a tabindex="-1" href="#">1st year</a></li>
           <li><a tabindex="-1" href="#">2nd year</a></li>
-		  <li><a tabindex="-1" href="#">3rd year</a></li>
-		  <li><a tabindex="-1" href="#">4th year</a></li>
-          
-        </ul>
+	</ul>
 	 </li>
 	 
 	 
@@ -76,6 +96,12 @@
   </div>
 </div>
 
+  
+<div class="container" id="logout">
+  <a href="logout.php" class="btn btn-info btn-lg">
+    <span class="glyphicon glyphicon-log-out"></span> Log out
+  </a>
+</div>
 <script>
 $(document).ready(function(){
   $('.dropdown-submenu a.test').on("click", function(e){

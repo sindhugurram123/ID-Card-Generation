@@ -38,7 +38,7 @@
         <a href="#"><a href="user.php">Home</a></a>
         <a href="#"><a href="uploadv4.php">Upload Info</a></a>
         <a href="#"><a href="update.php">Update Details</a></a>
-        <a href="#"><a href="generate.html">Generate Report</a></a>
+        <a href="#"><a href="generate1.html">Generate Report</a></a>
         <a href="#"><a href="card.php">Generate Card</a></a>
         <a href="#"><a href="logout">Change Password</a></a>
     </div>
