@@ -5,7 +5,8 @@
 <title>Add Record Form</title>
 </head>
 <body>
-    <center><img src="logo.png" height="150px" width="450px"><br><br><br>
+    <center>
+        <img src="logo.png" height="150px" width="450px"><br><br><br>
 <form action="insert.php" method="post">
     <p>
         <label for="emailId">Email Id </label>
