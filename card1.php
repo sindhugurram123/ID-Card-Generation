@@ -16,10 +16,58 @@ if(isset($_POST['print']))
     $bus = mysqli_real_escape_string($db,$_POST['bus']);
     $paid=mysqli_real_escape_string($db,$_POST['paid']);
     $due=mysqli_real_escape_string($db,$_POST['due']);
+    $total=mysqli_real_escape_string($db,$_POST['tot']);
+
+
+ $sql = "INSERT INTO `fee_master`(`route_no`, `boadin_point`, `total_fees`, `fees_paid`, `due`, `hall_ticket`) VALUES ($bus,'$board',$total,$paid,$due,'$roll')";
+$result = mysqli_query($db,$sql);
+
+
+
+  if(mysqli_query($db, $sql)){
+    "<script type='text/javascript'>alert('Submitted Successfully!')</script>";
+} else{
+"<script type='text/javascript'>alert('Failed, Try Again')</script>";
+}
 
 }
-?>
 
+if(isset($_POST["submit"])){
+    $check = getimagesize($_FILES["image"]["tmp_name"]);
+    if($check !== false){
+        $image = $_FILES['image']['tmp_name'];
+        $imgContent = addslashes(file_get_contents($image));
+
+        $dbHost     = 'localhost';
+        $dbUsername = 'root';
+        $dbPassword = 'sindhu';
+        $dbName     = 'idcard';
+        
+        //Create connection and select DB
+        $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
+        
+        // Check connection
+        if($db->connect_error){
+            die("Connection failed: " . $db->connect_error);
+        }
+        
+        $dataTime = date("Y-m-d H:i:s");
+        
+        //Insert image content into database
+
+        $sql = "UPDATE stud_master SET image=' $imgContent' WHERE hall_ticket='$roll'";
+$result = mysqli_query($db,$sql);
+
+        if($result){
+            echo "File uploaded successfully.";
+        }else{
+            echo "File upload failed, please try again.". mysqli_error($insert);
+        } 
+    }else{
+        echo "Please select an image file to upload.". mysqli_error($db);
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -226,12 +274,11 @@ if(isset($_POST['print']))
                 </div>
 
                 <div class="ok">
-                    <form action="card1.php">
-                    <input type="file" name="image"/>
-
-                    <input type="submit" name="submit" id="search" value="UPLOAD"/>
-
-                </form>
+                     <form action="imgupload.php" method="post" enctype="multipart/form-data">
+       
+        <input type="file" name="image"/>
+        <input type="submit" name="submit" value="UPLOAD"/>
+    </form>
                 </div>
 
                 <div class="container" id="logout">

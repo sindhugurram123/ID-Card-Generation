@@ -93,6 +93,12 @@ padding: 30px;
 
 
     </center>
+
+    <div class="container" id="logout">
+   <a href="logout.php" class="btn btn-info btn-lg">
+    <span class="glyphicon glyphicon-log-out"></span> Log out
+ </a>
+  </div>
 </body>
 </head>
 </html>

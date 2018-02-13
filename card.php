@@ -6,8 +6,13 @@ if(isset($_POST['Submit']))
     $db = new mysqli("localhost","root","sindhu","idcard") ;           
     $roll=mysqli_real_escape_string($db,trim($_POST['roll']));
 
-    $sql="select  hall_ticket,name,branch,section,yeart,Phone_No,batch from stud_master where hall_ticket=$roll;";
+    $sql="select  hall_ticket,name,branch,section,yeart,Phone_No,batch from stud_master where hall_ticket='{$roll}'";
     $result=mysqli_query($db,$sql);
+
+    if(!$result)
+    {
+    	 echo 'MySQL Error: ' . mysqli_error();
+    }
     
 }
 ?>
@@ -30,6 +35,8 @@ if(isset($_POST['Submit']))
                     function closeNav() {
                         document.getElementById("mySidenav").style.width = "0";
                     }
+
+
                 </script>
 
                 <script>
@@ -44,30 +51,35 @@ if(isset($_POST['Submit']))
                     })
                 </script>
 
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
+ 
+
+
+
                 <style>
 
-                body{
-                    overflow: scroll;
-                }
-                table ,tr ,td{
+                            body{
+                                overflow: scroll;
+                            }
+                            table ,tr ,td{
 
-                    padding:7px;
-                    height: 30px;
-                    margin: -40px;
-                }
-                .upload{
+                                padding:7px;
+                                height: 30px;
+                                margin: -40px;
+                            }
+                            .upload{
 
-                    position: relative;
-                    top: -90px;
+                                position: relative;
+                                top: -90px;
 
-                }
-                hr{
-                    margin-top: 20px;
-                    margin-bottom: 20px;
-                    border: 0;
-                    border-top: 1px solid #1768b2;
-                }
-            }
+                            }
+                            hr{
+                                margin-top: 100px;
+                                margin-bottom: 20px;
+                                border: 0;
+                                border-top: 1px solid #1768b2;
+                            }
+                        }
                  </style>
     </head>
 <body>
@@ -132,8 +144,11 @@ if(isset($_POST['Submit']))
                         </tr>
                         <tr> <td> Year: </td> <td><input type="number"  readonly="readonly class="form-control" name="year"  value="<?php echo $row["yeart"]; ?>"></td>
 
-                            <td>Batch:</td><td><input type="number" name="batch" class="form-control" value="<?php echo $row["batch"]; ?>"></td>
-                        </tr><tr>                        <td> Boading Point : </td> <td>
+                            <td>Batch:</td><td><input type="text" name="batch" readonly="readonly class="form-control" value="<?php echo $row["batch"]; ?>"></td>
+                        </tr>
+                        
+                        <tr> 
+                           <td> Boading Point : </td> <td>
                             <select  name="board" > 
                                 <option>Miyapur</option>
                                 <option>Dilsuknagar</option>
@@ -146,11 +161,20 @@ if(isset($_POST['Submit']))
                         </td>
 
                         <td> Bus No: </td> <td> 
-                            <input type="number" value="" name="bus">
+                            <select  name="bus" > 
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                            </select>
                         </td></tr>
-                        <tr><td> Total Amt: </td> <td> <input type="number" class="form-control" name="tot"></td>
-                         <td> Amt Paid: </td> <td> <input type="number" class="form-control" name="paid"></td></tr>
-                         <td> Amt Due: </td> <td> <input type="number" class="form-control" name="due"></td>
+                        <tr><td> Amt Paid: </td> <td> <input type='text' class='price' name="paid" /></td>
+                            <td> Total Amt: </td> <td><input type='text' class='price'   name="tot" /></td>
+                         </tr><tr>
+                <td> Amt Due: </td> <td> <input type='number' id='totalPrice'  name="due"></td>
 
                          <td>
 
@@ -171,6 +195,27 @@ if(isset($_POST['Submit']))
     <span class="glyphicon glyphicon-log-out"></span> Log out
  </a>
   </div>
+
+  <script>
+// we used jQuery 'keyup' to trigger the computation as the user type
+$('.price').keyup(function () {
+ 
+    // initialize the sum (total price) to zero
+    var sum = 0;
+     
+    // we use jQuery each() to loop through all the textbox with 'price' class
+    // and compute the sum for each loop
+    $('.price').each(function() {
+        sum = Number($(this).val())-sum;
+    });
+     
+    // set the computed value to 'totalPrice' textbox
+    $('#totalPrice').val(sum);
+     
+});
+</script>
+
+
     </body>
         </html>
 

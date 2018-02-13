@@ -15,10 +15,7 @@ if(isset($_POST['print']))
 
 {
 
-
 $db = new mysqli("localhost","root","sindhu","idcard") ;           
-
-
 
 $roll=mysqli_real_escape_string($db,$_POST['roll']);
 $name= mysqli_real_escape_string($db,$_POST['name']);
@@ -35,7 +32,7 @@ if($db == false){
 
  $sql = "INSERT INTO stud_master (hall_ticket,class,name,branch,batch,yeart,Phone_No,section) VALUES ('$roll','$class','$name','$branch','$batch',$year,$mobile,'$section')";
 $result = mysqli_query($db,$sql);
-  if(mysqli_query( $db,$result)){
+  if(mysqli_query($db,$result)){
                     echo "Records added successfully.";
                         } else{
                             //echo "ERROR: Could not able to execute $sql. " . mysqli_error($db);
@@ -155,6 +152,7 @@ $result = mysqli_query($db,$sql);
                     </select></td></tr>
                     <tr>
                         <td>Roll No.</td><td><input type="text" name="roll"></td>
+                        
                     </tr>
                     <tr><td> Name:</td><td> <input type="text" name="name"></td>
                         <td>Branch:</td>

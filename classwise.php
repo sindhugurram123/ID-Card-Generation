@@ -1,3 +1,21 @@
+<?
+php ini_set( "display_errors", 0); ?>
+    
+
+      <?php 
+if(isset($_POST['Submit']))
+{
+    $db = new mysqli("localhost","root","sindhu","idcard");
+
+    $classes=mysqli_real_escape_string($db,$_POST['classes']);
+ 
+$result = mysqli_query($db,"SELECT * FROM stud_master WHERE class='$classes'");
+}
+ 
+
+      ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,8 +54,7 @@
    <div class="logo">
     <img src="logo.png" height="150px" width="450px">
   </div></center>
-  <p align="left">
-<button onclick="goBack()">Go Back</button></p>
+ 
   <div class="menu">
     <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
   </div>   
@@ -53,50 +70,61 @@
     <a href="#"><a href="logout">Change Password</a></a>
   </div>
     
-<div class="container" align="center-right">
-                                
-  <div class="dropdown" >
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Class
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-	<li class="dropdown-submenu">
-      <a class="test" tabindex="-1" href="#">B.Tech<span class="caret"></span></a>
-	  <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">1st year</a></li>
-          <li><a tabindex="-1" href="#">2nd year</a></li>
-		  <li><a tabindex="-1" href="#">3rd year</a></li>
-		  <li><a tabindex="-1" href="#">4th year</a></li>
-          
-        </ul>
-	  
-	  </li>
-	  
-	  
-	  
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">M.Tech<span class="caret"></span></a>
-	   <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">1st year</a></li>
-          <li><a tabindex="-1" href="#">2nd year</a></li>
-	</ul>
-	 </li>
-	 
-	 
-      <li class="dropdown-submenu">
-        <a class="test" tabindex="-1" href="#">Pharmacy <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">1st year</a></li>
-          <li><a tabindex="-1" href="#">2nd year</a></li>
-		  <li><a tabindex="-1" href="#">3rd year</a></li>
-		  <li><a tabindex="-1" href="#">4th year</a></li>
-          
-        </ul>
-      </li>
-    </ul>
-  </div>
+<div class="container">
+<center>
+ <form action="" method="post">
+  <P style="color:black;font-weight:bold;font-size:19px;">Select Class:<select name="classes">
+    <option>Btech</option>
+    <option>Mtech</option>
+    <option>Pharmcy</option>
+  </select>
+
+<div class="btn-group" >  <input class="btn btn-primary" type="submit" name="Submit" value="Submit">
+                        </div>   
+
+</center>   </form>
+</P>
 </div>
 
   
+<div class="container">
+    <div  class="tab">
+      <table class="table table-bordered" id="tabl">
+        <thead>
+          <tr style="background-color:grey;">
+            <th>Name</th>       
+            <th>Class</th>
+            <th>Hall Ticket No.</th>
+            <th>Branch</th>
+            <th>Batch</th>
+            <th>Contact</th>
+            
+        </tr>
+    </thead>
+
+    <?php if(isset($_POST['Submit']))
+    {
+    ?>
+    <div name="tables">
+    <tbody>
+        <?php while($row = mysqli_fetch_array($result))
+        { ?>
+          <tr>
+             <td ><?php echo $row['name'] ?></td>
+            <td><?php echo $row['class'] ?></td>
+            <td><?php echo $row['hall_ticket'] ?></td>
+            <td><?php echo $row['branch']?></td>
+            <td> <?php echo $row['batch'] ?></td>
+            <td><?php echo $row['Phone_No'] ?></td>
+            </tr>
+         <?php }?>
+     </tbody>
+   </div>
+   <?php }?>
+ </table>
+</div>
+</div>
+
 <div class="container" id="logout">
   <a href="logout.php" class="btn btn-info btn-lg">
     <span class="glyphicon glyphicon-log-out"></span> Log out

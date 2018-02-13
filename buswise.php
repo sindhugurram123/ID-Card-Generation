@@ -1,3 +1,21 @@
+<?
+php ini_set( "display_errors", 0); ?>
+    
+
+      <?php 
+if(isset($_POST['Submit']))
+{
+    $db = new mysqli("localhost","root","sindhu","idcard");
+
+    $classes=mysqli_real_escape_string($db,$_POST['classes']);
+ 
+$result = mysqli_query($db,"SELECT * FROM bus_master WHERE bus_no='$classes'");
+}
+ 
+
+      ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,14 +25,20 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="first.css">
   <link rel="stylesheet" type="text/css" href="menu.css">
-  <style>
-  .dropdown-menu-center {
-  left: 50% !important;
-  right: auto !important;
-  text-align: center !important;
-  transform: translate(-50%, 0) !important;
+<style>
+
+.dropdown-submenu {
+    position: relative;
+  
 }
-  </style>
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+  
+}
+</style>
   <script>
     function openNav() {
       document.getElementById("mySidenav").style.width = "250px";
@@ -24,18 +48,17 @@
       document.getElementById("mySidenav").style.width = "0";
     }
   </script>
- 
 </head>
 <body>
  <center>
    <div class="logo">
     <img src="logo.png" height="150px" width="450px">
   </div></center>
-  <p align="center">
-<button onclick="goBack()">Go Back</button></p>
+ 
   <div class="menu">
     <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
-  </div>
+  </div>   
+
 
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -44,60 +67,79 @@
     <a href="#"><a href="buswise.php">Bus Wise</a></a>
     <a href="#"><a href="classwise.php">Class and Branch</a></a>
     <a href="#">Pending</a>
-    
     <a href="#"><a href="logout">Change Password</a></a>
   </div>
-
-
-
-<p align="center">
+    
 <div class="container">
-  
-  <div class="dropdown text-center">
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Bus No.
-    <span class="caret"></span></button></p>
-    <ul class="dropdown-menu dropdown-menu-center">
-      <li class="divider"></li>
-	  <li><a href="#">1</a></li>
-	  <li class="divider"></li>
-      <li><a href="#">2</a></li>
-	  <li class="divider"></li>
-      <li><a href="#">3</a></li>
-      <li class="divider"></li>
-      <li><a href="#">4</a></li>
-	  <li class="divider"></li>
-      <li><a href="#">5</a></li>
-	  <li class="divider"></li>
-      <li><a href="#">6</a></li>
-	  <li class="divider"></li>
-      <li><a href="#">7</a></li>
-	  <li class="divider"></li>
-      <li><a href="#">8</a></li>
-    </ul>
-  </div>
+<center>
+ <form action="" method="post">
+  <P style="color:black;font-weight:bold;font-size:19px;">Select Bus:<select name="classes">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+  </select>
+
+<div class="btn-group" >  <input class="btn btn-primary" type="submit" name="Submit" value="Submit">
+                        </div>   
+
+</center>   </form>
+</P>
 </div>
 
-<br>
-<br>
   
+<div class="container">
+    <div  class="tab">
+      <table class="table table-bordered" id="tabl">
+        <thead>
+          <tr style="background-color:#5DADE2;">
+            <th>Route No</th>       
+            <th>Bus No.</th>
+            <th>Driver Name</th>
+            <th>Seats</th>
+            <th>Boarding Points</th>
+            <th>Mobile</th>
+            <th>Bus Name</th>
+            
+        </tr>
+    </thead>
+
+    <?php if(isset($_POST['Submit']))
+    {
+    ?>
+    <div name="tables">
+    <tbody>
+        <?php while($row = mysqli_fetch_array($result))
+        { ?>
+          <tr>
+             <td ><?php echo $row['route_no'] ?></td>
+            <td><?php echo $row['bus_no'] ?></td>
+            <td><?php echo $row['driver_name'] ?></td>
+            <td><?php echo $row['seats']?></td>
+            <td> <?php echo $row['Board_pts'] ?></td>
+            <td><?php echo $row['mobile'] ?></td>
+            <td><?php echo $row['bus_name'] ?></td>
+            </tr>
+         <?php }?>
+     </tbody>
+   </div>
+   <?php }?>
+ </table>
+</div>
+</div>
+
 <div class="container" id="logout">
   <a href="logout.php" class="btn btn-info btn-lg">
     <span class="glyphicon glyphicon-log-out"></span> Log out
   </a>
 </div>
-
 <script>
-  $(document).ready(function(){
-    $('.dropdown-submenu a.test').on("click", function(e){
-      $(this).next('ul').toggle();
-      e.stopPropagation();
-      e.preventDefault();
-    });
+$(document).ready(function(){
+  $('.dropdown-submenu a.test').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
   });
-  
-  function goBack() {
-    window.history.back()
-}
+});
 </script>
 
 </body>
