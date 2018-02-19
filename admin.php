@@ -73,10 +73,8 @@ padding: 30px;
 </div>
 
 <div class="dropdown">
-  <button class="dropbtn">Generate Report</button>
-  <div class="dropdown-content">
-    <a href="#"><a href="addusers.php">Studentwise</a></a>
-    <a href="#"><a href="addbuses.php">Buswise</a></a>
+  <button class="dropbtn"><a href="generate1.html">Generate Report</button>
+  
   
   </div>
 </div>

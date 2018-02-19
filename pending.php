@@ -3,14 +3,13 @@ php ini_set( "display_errors", 0); ?>
     
 
       <?php 
-if(isset($_POST['Submit']))
-{
+
     $db = new mysqli("localhost","root","sindhu","idcard");
 
-    $classes=mysqli_real_escape_string($db,$_POST['classes']);
+    
  
-$result = mysqli_query($db,"SELECT * FROM bus_master WHERE bus_no='$classes'");
-}
+$result = mysqli_query($db,"SELECT * FROM fee_master WHERE due != 0");
+
  
 
       ?>
@@ -65,25 +64,15 @@ $result = mysqli_query($db,"SELECT * FROM bus_master WHERE bus_no='$classes'");
     <a href="#"><a href="user.php">Home</a></a>
     <a href="#"><a href="academic.php">Academic year</a></a>
     <a href="#"><a href="buswise.php">Bus Wise</a></a>
-    <a href="#"><a href="classwise.php">Class and Branch</a></a>
-    <a href="#">Pending</a>
+    <a href="#"><a href="classwise.php">Class</a></a>
+   <a href="#"><a href="branch.php">Branch</a></a>
+    <a href="#"><a href="pending.php">Pending</a></a>
     <a href="#"><a href="logout">Change Password</a></a>
   </div>
     
 <div class="container">
 <center>
- <form action="" method="post">
-  <P style="color:black;font-weight:bold;font-size:19px;">Select Bus:<select name="classes">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-    <option>6</option>
-  </select>
-
-<div class="btn-group" >  <input class="btn btn-primary" type="submit" name="Submit" value="Submit">
-                        </div>   
+ 
 
 </center>   </form>
 </P>
@@ -94,38 +83,42 @@ $result = mysqli_query($db,"SELECT * FROM bus_master WHERE bus_no='$classes'");
     <div  class="tab">
       <table class="table table-bordered" id="tabl">
         <thead>
-          <tr style="background-color:grey;">
-            <th>Route No</th>       
-            <th>Bus No.</th>
-            <th>Driver Name</th>
-            <th>Seats</th>
-            <th>Boarding Points</th>
-            <th>Mobile</th>
-            <th>Bus Name</th>
+          <tr style="background-color:#5DADE2;font-size:20px;">
+            <th>Route No.</th>       
+            <th>Boarding Point</th>
+            <th>Toatl fees</th>
+            <th>Fees Paid</th>
+            <th>Due</th>
+            <th>Hall ticket</th>
             
         </tr>
     </thead>
 
-    <?php if(isset($_POST['Submit']))
-    {
-    ?>
+    
+   
     <div name="tables">
     <tbody>
         <?php while($row = mysqli_fetch_array($result))
         { ?>
           <tr>
              <td ><?php echo $row['route_no'] ?></td>
-            <td><?php echo $row['bus_no'] ?></td>
-            <td><?php echo $row['driver_name'] ?></td>
-            <td><?php echo $row['seats']?></td>
-            <td> <?php echo $row['Board_pts'] ?></td>
-            <td><?php echo $row['mobile'] ?></td>
-            <td><?php echo $row['bus_name'] ?></td>
+            <td><?php echo $row['boadin_point'] ?></td>
+            <td><?php echo $row['total_fees'] ?></td>
+            <td><?php echo $row['fees_paid']?></td>
+            <td> <?php echo $row['due'] ?></td>
+            <td><?php echo $row['hall_ticket'] ?></td>
             </tr>
          <?php }?>
      </tbody>
    </div>
-   <?php }?>
+   
+   <?php
+if (!$result) {
+    printf("Error: %s\n", mysqli_error($db));
+    exit();
+}
+
+    ?>
  </table>
 </div>
 </div>

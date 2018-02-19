@@ -17,7 +17,7 @@ $driver_name = mysqli_real_escape_string($link,$_REQUEST['driver_name']);
 $boarding_points = mysqli_real_escape_string($link,$_REQUEST['boarding_points']);
 $mobile_no = mysqli_real_escape_string($link,$_REQUEST['mobile_no']); 
 // attempt insert query execution
-$sql = "INSERT INTO bus_master(route_no, bus_no, driver_name, seats, Board_pts, mobile, bus_name) VALUES ('$route_no', '$bus_no', '$driver_name', '$bus_seats','$boarding_points', '$mobile_no', '$bus_name')";
+$sql = "INSERT INTO route_master(route_no, bus_no, driver_name, seats, Board_pts, mobile, bus_name) VALUES ('$route_no', '$bus_no', '$driver_name', '$bus_seats','$boarding_points', '$mobile_no', '$bus_name')";
 if(mysqli_query($link, $sql)){
 	
     echo "Records added successfully.";

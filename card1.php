@@ -1,6 +1,9 @@
+    
+
 
 <?
 php ini_set( "display_errors", 0); ?>
+
 
 
 <?php 
@@ -19,54 +22,15 @@ if(isset($_POST['print']))
     $total=mysqli_real_escape_string($db,$_POST['tot']);
 
 
- $sql = "INSERT INTO `fee_master`(`route_no`, `boadin_point`, `total_fees`, `fees_paid`, `due`, `hall_ticket`) VALUES ($bus,'$board',$total,$paid,$due,'$roll')";
-$result = mysqli_query($db,$sql);
-
-
-
-  if(mysqli_query($db, $sql)){
-    "<script type='text/javascript'>alert('Submitted Successfully!')</script>";
-} else{
-"<script type='text/javascript'>alert('Failed, Try Again')</script>";
-}
+    $sql = "INSERT INTO `fee_master`(`route_no`, `boadin_point`, `total_fees`, `fees_paid`, `due`, `hall_ticket`) VALUES ($bus,'$board',$total,$paid,$due,'$roll')";
+    $result = mysqli_query($db,$sql);
 
 }
 
-if(isset($_POST["submit"])){
-    $check = getimagesize($_FILES["image"]["tmp_name"]);
-    if($check !== false){
-        $image = $_FILES['image']['tmp_name'];
-        $imgContent = addslashes(file_get_contents($image));
 
-        $dbHost     = 'localhost';
-        $dbUsername = 'root';
-        $dbPassword = 'sindhu';
-        $dbName     = 'idcard';
-        
-        //Create connection and select DB
-        $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
-        
-        // Check connection
-        if($db->connect_error){
-            die("Connection failed: " . $db->connect_error);
-        }
-        
-        $dataTime = date("Y-m-d H:i:s");
-        
-        //Insert image content into database
 
-        $sql = "UPDATE stud_master SET image=' $imgContent' WHERE hall_ticket='$roll'";
-$result = mysqli_query($db,$sql);
 
-        if($result){
-            echo "File uploaded successfully.";
-        }else{
-            echo "File upload failed, please try again.". mysqli_error($insert);
-        } 
-    }else{
-        echo "Please select an image file to upload.". mysqli_error($db);
-    }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +49,6 @@ $result = mysqli_query($db,$sql);
 
     <style>
 
-    
     .id-card-holder {
         width: 325px;
         padding: 4px;
@@ -126,7 +89,7 @@ $result = mysqli_query($db,$sql);
         margin:4px;
     }
     .photo img {
-        width: 0px;
+        width: 100px;
         margin-top: 15px;
         float: right;
         position: relative;
@@ -162,7 +125,7 @@ $result = mysqli_query($db,$sql);
     }
     .print{
         position: relative;
-        bottom: -180px;
+        bottom: -80px;
         left: 1000px;
     }
 
@@ -188,8 +151,16 @@ $result = mysqli_query($db,$sql);
         document.getElementById("mySidenav").style.width = "0";
     }
 
-    function myFunction() {
+    
+</script>
+
+<script>
+    function printContent(el){
+        var restorepage = document.body.innerHTML;
+        var printcontent = document.getElementById(el).innerHTML;
+        document.body.innerHTML = printcontent;
         window.print();
+        document.body.innerHTML = restorepage;
     }
 </script>
 </head>
@@ -214,7 +185,7 @@ $result = mysqli_query($db,$sql);
         <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
     </div>
 
-    <div class="id-card-holder">
+    <div class="id-card-holder" id="id-card-holder">
         <div class="id-card">
             <div class="header">
                 <img src="anurag.jpg">
@@ -244,12 +215,30 @@ $result = mysqli_query($db,$sql);
                     </table>
 
                     <div class="photo">
-                        <img src="logo.pnp">
+
+                        <?php
+                        if(isset($_POST['print']))
+                        { 
+                            $filepath = "images1/" . $_FILES["file"]["name"];
+                           // $filepath = "images1/i.jpg";
+                            if(move_uploaded_file($_FILES["file"]["tmp_name"], $filepath)) 
+                            {
+                                echo "<img src=".$filepath."  />";
+                            } 
+                            else 
+                            {
+
+                                echo "Error !!";
+                            }
+                        } 
+                        ?>
+
+
                     </div>
 
-                    <div class="qr-code">
+                    <!--div class="qr-code">
                         <img src="https://www.shopify.com/growth-tools-assets/qr-code/shopify-faae7065b7b351d28495b345ed76096c03de28bac346deb1e85db632862fd0e4.png">
-                    </div>
+                    </div-->
                     <h3>www.anurag.edu.in</h3>
                     <hr>
                     <p>
@@ -269,22 +258,28 @@ $result = mysqli_query($db,$sql);
                 </div>
 
 
-                <div class="print">
-                    <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-                </div>
+                
+            </div>
 
-                <div class="ok">
-                     <form action="imgupload.php" method="post" enctype="multipart/form-data">
-       
-        <input type="file" name="image"/>
-        <input type="submit" name="submit" value="UPLOAD"/>
-    </form>
-                </div>
+            <div class="ok">
 
-                <div class="container" id="logout">
-                    <a href="logout.php" class="btn btn-info btn-lg">
-                        <span class="glyphicon glyphicon-log-out"></span> Log out
-                    </a>
-                </div>
-            </body>
-            </html>
+
+               <form method="post" enctype="multipart/form-data">  
+                   <input type="file" name="image" id="image" />  
+                   <br />  
+                   <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-info" />  
+               </form> 
+           </div>
+
+           <div class="container" id="logout">
+            <a href="logout.php" class="btn btn-info btn-lg">
+                <span class="glyphicon glyphicon-log-out"></span> Log out
+            </a>
+        </div>
+
+        <div class="print">
+            <button class="btn btn-primary hidden-print" onclick="printContent('id-card-holder')"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+        </div>
+
+    </body>
+    </html>

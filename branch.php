@@ -9,7 +9,7 @@ if(isset($_POST['Submit']))
 
     $classes=mysqli_real_escape_string($db,$_POST['classes']);
  
-$result = mysqli_query($db,"SELECT * FROM bus_master WHERE bus_no='$classes'");
+$result = mysqli_query($db,"SELECT * FROM stud_master WHERE branch='$classes'");
 }
  
 
@@ -68,16 +68,22 @@ $result = mysqli_query($db,"SELECT * FROM bus_master WHERE bus_no='$classes'");
     <a href="#"><a href="classwise.php">Discipline </a></a>
     <a href="#"><a href="branch.php">Branch</a></a>
      <a href="#"><a href="pending.php">Pending</a></a>
+    <!--a href="#">Pending</a-->
     <a href="#"><a href="logout">Change Password</a></a>
   </div>
     
 <div class="container">
 <center>
  <form action="" method="post">
-  <P style="color:black;font-weight:bold;font-size:19px;">Select Bus:<select name="classes">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
+  <P style="color:black;font-weight:bold;font-size:19px;">Select Class:<select name="classes">
+    <option>CSE</option>
+    <option>IT</option>
+    <option>MECH</option>
+    <OPTION>ECE</OPTION>
+    <OPTION>EEE</OPTION>
+    <OPTION>CIVIL</OPTION>
+    <OPTION>CHEM</OPTION>
+
   </select>
 
 <div class="btn-group" >  <input class="btn btn-primary" type="submit" name="Submit" value="Submit">
@@ -93,13 +99,12 @@ $result = mysqli_query($db,"SELECT * FROM bus_master WHERE bus_no='$classes'");
       <table class="table table-bordered" id="tabl">
         <thead>
           <tr style="background-color:#5DADE2;font-size:20px;">
-            <th>Route No</th>       
-            <th>Bus No.</th>
-            <th>Driver Name</th>
-            <th>Seats</th>
-            <th>Boarding Points</th>
-            <th>Mobile</th>
-            <th>Bus Name</th>
+            <th>Name</th>       
+            <th>Class</th>
+            <th>Hall Ticket No.</th>
+            <th>Branch</th>
+            <th>Batch</th>
+            <th>Contact</th>
             
         </tr>
     </thead>
@@ -112,13 +117,12 @@ $result = mysqli_query($db,"SELECT * FROM bus_master WHERE bus_no='$classes'");
         <?php while($row = mysqli_fetch_array($result))
         { ?>
           <tr>
-             <td ><?php echo $row['route_no'] ?></td>
-            <td><?php echo $row['bus_no'] ?></td>
-            <td><?php echo $row['driver_name'] ?></td>
-            <td><?php echo $row['seats']?></td>
-            <td> <?php echo $row['Board_pts'] ?></td>
-            <td><?php echo $row['mobile'] ?></td>
-            <td><?php echo $row['bus_name'] ?></td>
+             <td ><?php echo $row['name'] ?></td>
+            <td><?php echo $row['class'] ?></td>
+            <td><?php echo $row['hall_ticket'] ?></td>
+            <td><?php echo $row['branch']?></td>
+            <td> <?php echo $row['batch'] ?></td>
+            <td><?php echo $row['Phone_No'] ?></td>
             </tr>
          <?php }?>
      </tbody>

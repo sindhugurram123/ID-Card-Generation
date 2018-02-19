@@ -67,9 +67,9 @@ if(isset($_POST['Submit']))
     <a href="#"><a href="user.php">Home</a></a>
     <a href="#"><a href="academic.php">Academic year</a></a>
     <a href="#"><a href="buswise.php">Bus Wise</a></a>
-    <a href="#"><a href="classwise.php">Class and Branch</a></a>
-    <a href="#">Pending</a>
-    <a href="#">Student Preferred</a>
+    <a href="#"><a href="classwise.php">Discipline</a></a>
+   <a href="#"><a href="branch.php">Branch</a></a>
+     <a href="#"><a href="pending.php">Pending</a></a>
     <a href="#"><a href="logout">Change Password</a></a>
   </div>
 
@@ -115,7 +115,7 @@ if(isset($_POST['Submit']))
     <div  class="tab">
       <table class="table table-bordered" id="tabl">
         <thead>
-          <tr style="background-color:#5DADE2  ;">
+          <tr style="background-color:#5DADE2 ;font-size:20px ;">
             <th>Name</th>       
             <th>Class</th>
             <th>Hall Ticket No.</th>
